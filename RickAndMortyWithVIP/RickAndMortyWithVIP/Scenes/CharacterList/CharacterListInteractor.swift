@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CharactersBusinessLogic: AnyObject {
-    func fetchCharacters(request: Characters.Fetch.Request)
+    func fetchCharacters(params: [String: Any])
 }
 
 protocol CharactersDataStore: AnyObject {
@@ -16,7 +16,7 @@ protocol CharactersDataStore: AnyObject {
 }
 
 class CharactersInteractor: CharactersBusinessLogic, CharactersDataStore {
-
+    var characters: [CharacterDetails]?
     var presenter: CharactersPresentationLogic?
     var worker: CharactersWorkingLogic
 
@@ -24,11 +24,11 @@ class CharactersInteractor: CharactersBusinessLogic, CharactersDataStore {
         self.worker = worker
     }
 
-    var characters: [CharacterDetails]?
+    
 
-    func fetchCharacters(request: Characters.Fetch.Request) {
+    func fetchCharacters(params: [String: Any]) {
         // 2
-        worker.getCharacters(request: CharacterListResponse.Request(page: request.page)) { [weak self] result in
+        worker.getCharacters(params: params) { [weak self] result in
             switch result {
             case .success(let response):
                 self?.characters = response.charactersDetails

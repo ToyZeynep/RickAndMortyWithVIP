@@ -14,9 +14,11 @@ class CharacterListViewController: UIViewController {
     var interactor: CharactersBusinessLogic?
     var router: (CharactersRoutingLogic & CharactersDataPassing)?
     var gridFlowLayout = GridFlowLayout()
-    @IBOutlet weak var characterListCollectionView: UICollectionView!
     var viewModel: Characters.Fetch.ViewModel?
-
+    
+    @IBOutlet weak var characterListCollectionView: UICollectionView!
+    @IBOutlet weak var characterListSearchBar: UISearchBar!
+    
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -52,8 +54,11 @@ class CharacterListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // 1
-        interactor?.fetchCharacters(request: Characters.Fetch.Request(page: 2))
-        characterListCollectionView.register(CharacterListCollectionViewCell.self, forCellWithReuseIdentifier: "CharacterListCollectionViewCell")
+        var params: [String: Any] = [String: Any]()
+        params["page"] = 1
+        interactor?.fetchCharacters(params: params)
+        let nib = UINib(nibName: "CharacterListCollectionViewCell", bundle: nil)
+        characterListCollectionView.register(nib, forCellWithReuseIdentifier: "CharacterListCollectionViewCell")
         characterListCollectionView.collectionViewLayout = gridFlowLayout
     }
 }
@@ -61,6 +66,7 @@ class CharacterListViewController: UIViewController {
 extension CharacterListViewController: CharactersDisplayLogic {
     func displayCharacters(viewModel: Characters.Fetch.ViewModel) {
         self.viewModel = viewModel
+        characterListCollectionView.reloadData()
     }
 }
 extension CharacterListViewController: UICollectionViewDelegate , UICollectionViewDataSource {

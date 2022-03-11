@@ -16,19 +16,6 @@ struct CharacterListResponse : Codable {
         case info = "info"
         case charactersDetails = "results"
     }
-    
-    
-    struct Request: Encodable {
-        /**
-         https://newsapi.org/docs/endpoints/top-headlines
-         Can be fill according to documentation. I just added country statically
-         */
-        let page: Int
-
-        init(page: Int) {
-            self.page = page
-        }
-    }
 }
 
 struct Info : Codable {
@@ -45,6 +32,7 @@ struct Info : Codable {
         case prev = "prev"
     }
 }
+
 class Origin :   Codable {
     var name : String?
     var url : String?
@@ -77,7 +65,7 @@ class CharacterDetails :  Codable {
     var origin : Origin?
     var location : Location?
     var image : String?
-    var episode : String?
+    var episode : [String]?
     var url : String?
     var created : String?
     

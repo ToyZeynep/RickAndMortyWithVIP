@@ -9,20 +9,14 @@
 import Foundation
 
 protocol CharactersWorkingLogic: AnyObject {
-    func getCharacters(request: CharacterListResponse.Request, completion: @escaping ((Result<CharacterListResponse, Error>) -> Void))
+    func getCharacters(params: [String: Any], completion: @escaping ((Result<CharacterListResponse, Error>) -> Void))
 }
 
 final class CharactersWorker: CharactersWorkingLogic {
-    
-    func getCharacters(request: CharacterListResponse.Request, completion: @escaping ((Result<CharacterListResponse, Error>) -> Void)) {
-
-        Requester().request(model: CharacterListResponse.self) { result in
-            switch result {
-            case .httpSuccess(let response):
-                completion(.success(response))
-            case .httpFail(let error):
-                completion(.failure(error))
-            }
+    //use case
+    func getCharacters(params: [String: Any], completion: @escaping ((Result<CharacterListResponse, Error>) -> Void)) {
+        ApiClient.request(ApiEndPoint.characterList(params: params)) {(_ result: Result<CharacterListResponse, Error>) in
+            completion(result)
         }
     }
 }

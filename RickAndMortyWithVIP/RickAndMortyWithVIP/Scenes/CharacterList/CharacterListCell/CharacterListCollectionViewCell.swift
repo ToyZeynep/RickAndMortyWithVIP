@@ -17,6 +17,20 @@ class CharacterListCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let margins = UIEdgeInsets(top: 10, left: 4, bottom: 10, right: 4)
+        contentView.frame = contentView.frame.inset(by: margins)
+        contentView.layer.cornerRadius = 8
+        contentView.backgroundColor = UIColor.white
+        contentView.layer.borderColor = UIColor.systemBlue.cgColor
+        contentView.layer.borderWidth = 0.7
+        contentView.clipsToBounds = true
+        characterImageView.layer.cornerRadius = 8
+        characterImageView.clipsToBounds = true
+    }
+    
     func configure(viewModel: Characters.Fetch.ViewModel.Character) {
         characterNameLabel.text = viewModel.name
         characterStatusLabel.text = viewModel.status
