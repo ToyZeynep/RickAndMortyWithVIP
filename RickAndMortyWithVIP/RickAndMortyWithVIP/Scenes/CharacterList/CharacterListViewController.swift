@@ -20,24 +20,24 @@ class CharacterListViewController: UIViewController {
     @IBOutlet weak var characterListSearchBar: UISearchBar!
     
     // MARK: Object lifecycle
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
     
     // MARK: Setup
-
+    
     private func setup() {
         let viewController = self
         let interactor = CharactersInteractor(worker: CharactersWorker())
@@ -50,7 +50,7 @@ class CharacterListViewController: UIViewController {
         router.viewController = viewController
         router.dataStore = interactor
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 1
@@ -83,5 +83,39 @@ extension CharacterListViewController: UICollectionViewDelegate , UICollectionVi
         return cell
     }
 }
+extension CharacterListViewController : UISearchBarDelegate {
     
-  
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(CharacterListViewController.reload), object: nil)
+        self.perform(#selector(CharacterListViewController.reload), with: nil, afterDelay: 0.7)
+    }
+    
+    @objc func reload() {
+        guard let searchText = characterListSearchBar.text else { return }
+        
+        if searchText == "" {
+            self.viewModel?.characters.removeAll()
+            var params: [String: Any] = [String: Any]()
+            params["page"] = 1
+            interactor?.fetchCharacters(params: params)
+            characterListCollectionView.reloadData()
+        } else {
+            search(searchText: searchText)
+        }
+    }
+    
+    func search(searchText: String){
+        var filteredData : [Characters.Fetch.ViewModel.Character] = []
+        for task in (viewModel?.characters)! {
+            let str = task.name
+            if str!.lowercased().contains(searchText.lowercased()){
+                filteredData.append(task)
+            }
+        }
+        viewModel?.characters.removeAll()
+        viewModel?.characters.append(contentsOf: filteredData)
+        characterListCollectionView.reloadData()
+    }
+}
+
+

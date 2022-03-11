@@ -15,11 +15,11 @@ enum Characters {
         }
 
         struct Response {
-            let characters: [CharacterDetails]
+            var characters: [CharacterDetails]
         }
 
         struct ViewModel {
-            let characters: [Characters.Fetch.ViewModel.Character]
+            var characters: [Characters.Fetch.ViewModel.Character]
 
             struct Character {
                 let name: String?
