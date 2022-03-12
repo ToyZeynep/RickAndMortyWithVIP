@@ -16,6 +16,8 @@ class CharacterDetailsViewController: UIViewController {
     var gridFlowLayout = GridFlowLayout()
     var viewModel: Character.Fetch.ViewModel?
     
+    @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var detailsGenderLabel: UILabel!
     @IBOutlet weak var detailsImageView: UIImageView!
     @IBOutlet weak var detailsSpeciesLabel: UILabel!
     @IBOutlet weak var detailsStatusLabel: UILabel!
@@ -34,7 +36,8 @@ class CharacterDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        self.title = "Details"
+        self.navigationController?.navigationBar.tintColor = UIColor.black
     }
     
     // MARK: Setup
@@ -64,7 +67,13 @@ extension CharacterDetailsViewController: CharacterDetailsDisplayLogic {
         self.viewModel = viewModel
         detailsStatusLabel.text = viewModel.status
         detailsNameLabel.text = viewModel.name
-        
+        let urlString = viewModel.image!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        detailsImageView.kf.setImage(with: URL(string: urlString!))
+        detailsSpeciesLabel.text = viewModel.species
+        detailsGenderLabel.text = viewModel.gender
+        detailsView.dropViewShadow()
+        detailsImageView.layer.cornerRadius = 10
+        detailsImageView.layer.masksToBounds = true
     }
 }
 

@@ -8,10 +8,11 @@ import UIKit
 
 class SplashViewController: UIViewController {
 
+    @IBOutlet weak var splashImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+        splashImageView.image = UIImage(named: "splash")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             let storyBoard = UIStoryboard(name: "CharacterList", bundle: nil)
             let destVC = storyBoard.instantiateViewController(withIdentifier: "CharacterListViewController")
             destVC.modalPresentationStyle = .overFullScreen

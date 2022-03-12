@@ -15,14 +15,28 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iw9-68-FZV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iw9-68-FZV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IdP-a0-0Dc"/>
+                            <constraint firstItem="iw9-68-FZV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LcD-hv-h6W"/>
+                            <constraint firstItem="iw9-68-FZV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WfI-54-Yfd"/>
+                            <constraint firstAttribute="bottom" secondItem="iw9-68-FZV" secondAttribute="bottom" id="eK8-jb-5a2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Poc-UN-vG1"/>
+                    <connections>
+                        <outlet property="splashImageView" destination="iw9-68-FZV" id="eyq-7f-w6I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="93.75"/>
+            <point key="canvasLocation" x="195.6521739130435" y="93.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BNs-QD-yJR">
@@ -40,7 +54,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2HI-4J-ccP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
+            <point key="canvasLocation" x="-743" y="94"/>
         </scene>
     </scenes>
     <resources>

@@ -33,7 +33,8 @@ class CharacterListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.title = "Characters"
     }
     
     // MARK: Setup
@@ -86,6 +87,7 @@ extension CharacterListViewController: UICollectionViewDelegate , UICollectionVi
         return cell
     }
 }
+
 extension CharacterListViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

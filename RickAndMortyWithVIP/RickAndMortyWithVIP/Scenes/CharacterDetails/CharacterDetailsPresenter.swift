@@ -16,7 +16,7 @@ final class CharacterDetailsPresenter: CharacterDetailsPresentationLogic {
     
     func presentCharacter(response: Character.Fetch.Response) {
        
-        viewController?.displayCharacter(viewModel: Character.Fetch.ViewModel(name: response.character.name, status: response.character.status, image: response.character.image))
+        viewController?.displayCharacter(viewModel: Character.Fetch.ViewModel(name: response.character.name, status: response.character.status, image: response.character.image , gender: response.character.gender, species: response.character.species))
         
     }
   

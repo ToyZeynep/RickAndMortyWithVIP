@@ -7,18 +7,20 @@
 
 import Foundation
 enum Character {
-
+    
     enum Fetch {
-
+        
         struct Response {
             var character: CharacterDetails
         }
-
+        
         struct ViewModel {
-          
-                let name: String?
-                let status: String?
-                let image: String?
+            
+            let name: String?
+            let status: String?
+            let image: String?
+            let gender: String?
+            let species: String?
         }
     }
 }

@@ -20,15 +20,15 @@ class CharacterListCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let margins = UIEdgeInsets(top: 10, left: 4, bottom: 10, right: 4)
+        let margins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         contentView.frame = contentView.frame.inset(by: margins)
         contentView.layer.cornerRadius = 8
         contentView.backgroundColor = UIColor.white
-        contentView.layer.borderColor = UIColor.systemBlue.cgColor
+        contentView.layer.borderColor = UIColor.gray.cgColor
         contentView.layer.borderWidth = 0.7
         contentView.clipsToBounds = true
-        characterImageView.layer.cornerRadius = 8
-        characterImageView.clipsToBounds = true
+       // characterImageView.layer.cornerRadius = 8
+        //characterImageView.clipsToBounds = true
     }
     
     func configure(viewModel: Characters.Fetch.ViewModel.Character) {
