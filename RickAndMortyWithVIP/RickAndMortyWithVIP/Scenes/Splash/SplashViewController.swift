@@ -15,7 +15,7 @@ class SplashViewController: UIViewController {
             let storyBoard = UIStoryboard(name: "CharacterList", bundle: nil)
             let destVC = storyBoard.instantiateViewController(withIdentifier: "CharacterListViewController")
             destVC.modalPresentationStyle = .overFullScreen
-            self.present(destVC, animated: false, completion: nil)
+            self.navigationController?.pushViewController(destVC, animated: false)
         }
     }
 }

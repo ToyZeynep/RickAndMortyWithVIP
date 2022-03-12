@@ -10,10 +10,6 @@ enum Character {
 
     enum Fetch {
 
-        struct Request {
-            var page : Int
-        }
-
         struct Response {
             var character: CharacterDetails
         }
@@ -23,7 +19,6 @@ enum Character {
                 let name: String?
                 let status: String?
                 let image: String?
-            
         }
     }
 }

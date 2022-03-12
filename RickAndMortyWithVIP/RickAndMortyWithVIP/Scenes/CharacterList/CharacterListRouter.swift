@@ -24,7 +24,7 @@ final class CharactersRouter: CharactersRoutingLogic, CharactersDataPassing {
 
     func routeToCharacterDetail(index: Int) {
         let storyBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
-        let destVC: CharacterDetailsViewController = storyBoard.instantiateViewController(identifier: "CharacterDetailsViewController")
+        let destVC: CharacterDetailsViewController = storyBoard.instantiateViewController(identifier: "CharacterDetails")
         destVC.router?.dataStore?.character = (dataStore?.characters![index])
         destVC.modalPresentationStyle = .fullScreen
         viewController?.navigationController?.pushViewController(destVC, animated: true)
