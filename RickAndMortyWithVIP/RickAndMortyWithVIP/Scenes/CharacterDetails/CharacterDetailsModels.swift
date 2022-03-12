@@ -6,3 +6,24 @@
 //
 
 import Foundation
+enum Character {
+
+    enum Fetch {
+
+        struct Request {
+            var page : Int
+        }
+
+        struct Response {
+            var character: CharacterDetails
+        }
+
+        struct ViewModel {
+          
+                let name: String?
+                let status: String?
+                let image: String?
+            
+        }
+    }
+}

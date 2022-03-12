@@ -6,3 +6,18 @@
 //
 
 import Foundation
+import UIKit
+
+protocol CharacterDetailsRoutingLogic: AnyObject {
+
+}
+
+protocol CharacterDetailsDataPassing: AnyObject {
+    var dataStore: CharacterDetailsDataStore? { get }
+}
+
+final class CharacterDetailsRouter: CharacterDetailsRoutingLogic, CharacterDetailsDataPassing {
+
+    weak var viewController: CharacterDetailsViewController?
+    var dataStore: CharacterDetailsDataStore?
+}

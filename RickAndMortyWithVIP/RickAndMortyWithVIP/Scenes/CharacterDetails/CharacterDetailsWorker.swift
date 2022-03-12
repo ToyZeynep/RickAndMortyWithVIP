@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+protocol CharacterDetailsWorkingLogic: AnyObject {
+
+}
+
+final class CharacterDetailsWorker: CharacterDetailsWorkingLogic {
+ 
+}

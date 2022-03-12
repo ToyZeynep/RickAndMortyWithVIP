@@ -79,6 +79,9 @@ extension CharacterListViewController: UICollectionViewDelegate , UICollectionVi
         guard let model = self.viewModel?.characters[indexPath.item]  else {
             return UICollectionViewCell()
         }
+        cell.addTapGesture { [self] in
+            router?.routeToCharacterDetail(index: indexPath.row)
+        }
         cell.configure(viewModel: model)
         return cell
     }

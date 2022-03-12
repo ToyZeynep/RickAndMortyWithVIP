@@ -23,12 +23,10 @@ final class CharactersRouter: CharactersRoutingLogic, CharactersDataPassing {
     var dataStore: CharactersDataStore?
 
     func routeToCharacterDetail(index: Int) {
-        let storyBoard = UIStoryboard(name: "NewsDetail", bundle: nil)
-        let destVC: CharacterDetailsViewController = storyBoard.instantiateViewController(
-            identifier: "NewsDetailViewController"
-        )
-        // data passing sample
-       // destVC.router?.dataStore?.characters = dataStore?.characters?[index]
-        self.viewController?.navigationController?.pushViewController(destVC, animated: true)
+        let storyBoard = UIStoryboard(name: "CharacterDetails", bundle: nil)
+        let destVC: CharacterDetailsViewController = storyBoard.instantiateViewController(identifier: "CharacterDetailsViewController")
+        destVC.router?.dataStore?.character = (dataStore?.characters![index])
+        destVC.modalPresentationStyle = .fullScreen
+        viewController?.navigationController?.pushViewController(destVC, animated: true)
     }
 }
